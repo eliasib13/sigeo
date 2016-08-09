@@ -3,10 +3,13 @@ language: php
 php:
   - 5.5
 
+services:
+  - mysql
+
 before_script:
   - cp .env.travis .env
   - mysql -e 'create database sigeo;'
-  - mysql -e "grant all privileges on *.* to 'root'@'localhost' with grant option;" -uroot
+#  - mysql -e "grant all privileges on *.* to 'root'@'localhost' with grant option;" -uroot
   - composer self-update
   - composer install --no-interaction
   - chmod -R 777 storage/
