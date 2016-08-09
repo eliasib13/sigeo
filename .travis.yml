@@ -6,10 +6,10 @@ php:
 before_script:
   - cp .env.travis .env
   - mysql -e 'create database sigeo;'
+  - mysql -e "grant all privileges on *.* to 'root'@'localhost' with grant option;" -uroot
   - composer self-update
   - composer install --no-interaction
   - chmod -R 777 storage/
-  - php artisan migrate:install --env=testing --no-interaction -vvv
 
 script:
   - php artisan migrate --env=testing --no-interaction -vvv
