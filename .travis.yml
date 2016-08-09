@@ -8,7 +8,7 @@ before_script:
   - mysql -e 'create database sigeo;'
   - composer self-update
   - composer install --no-interaction
-  - chmod -R 777 app/storage
+  - chmod -R 777 storage/
   - php artisan migrate:install --env=testing --no-interaction -vvv
 
 script:
