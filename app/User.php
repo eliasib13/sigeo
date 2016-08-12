@@ -5,7 +5,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
-use Webpatser\Uuid\Uuid;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
 
@@ -30,7 +29,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['name', 'email', 'password'];
+	protected $fillable = ['name', 'email', 'password', 'uuid'];
 
 	/**
 	 * The attributes excluded from the model's JSON form.
@@ -41,24 +40,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 	public function exams() {
 		$this->hasMany('Exam', 'exam_id');
-	}
-
-	/**
-	 * The "booting" method of the model.
-	 *
-	 * @return void
-	 */
-	protected static function boot()
-	{
-		parent::boot();
-
-		/**
-		 * Attach to the 'creating' Model Event to provide a UUID
-		 * for the `id` field (provided by $model->getKeyName())
-		 */
-		static::creating(function ($model) {
-			$model->uuid = (string) Uuid::generate();
-		});
 	}
 
 }

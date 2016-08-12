@@ -11,6 +11,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use App\User;
 use Illuminate\Support\Facades\Hash;
+use Webpatser\Uuid\Uuid;
 
 class UserTableSeeder extends Seeder
 {
@@ -21,7 +22,8 @@ class UserTableSeeder extends Seeder
         User::create([
             'name' => 'Usuario Test',
             'email' => 'usertest@email.com',
-            'password' => Hash::make('usertestpwd')
+            'password' => Hash::make('usertestpwd'),
+            'uuid' => strval(Uuid::generate(4))
         ]);
     }
 }
