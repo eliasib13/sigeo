@@ -41,22 +41,4 @@ class AttemptAnswer extends Model {
      */
     protected $text;
 
-    /**
-     * The "booting" method of the model.
-     *
-     * @return void
-     */
-    protected static function boot()
-    {
-        parent::boot();
-
-        /**
-         * Attach to the 'creating' Model Event to provide a UUID
-         * for the `id` field (provided by $model->getKeyName())
-         */
-        static::creating(function ($model) {
-            $model->uuid = (string) Uuid::generate();
-        });
-    }
-
 }
