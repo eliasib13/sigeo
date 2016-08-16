@@ -11,6 +11,7 @@ use Webpatser\Uuid\Uuid;
 use App\User;
 use App\Exam;
 use App\Question;
+use App\Answer;
 
 class DatabaseSeeder extends Seeder {
 
@@ -23,6 +24,7 @@ class DatabaseSeeder extends Seeder {
 	{
 		Model::unguard();
 
+		DB::table('answers')->delete();
 		DB::table('questions')->delete();
 		DB::table('exams')->delete();
 		DB::table('users')->delete();
@@ -30,6 +32,7 @@ class DatabaseSeeder extends Seeder {
 		$this->call('UserTableSeeder');
 		$this->call('ExamTableSeeder');
 		$this->call('QuestionTableSeeder');
+		$this->call('AnswerTableSeeder');
 
 	}
 
@@ -149,6 +152,99 @@ class QuestionTableSeeder extends Seeder
 
 		foreach ($questions as $question) {
 			Question::Create($question);
+		}
+	}
+}
+
+/*
+ █████╗ ███╗   ██╗███████╗██╗    ██╗███████╗██████╗
+██╔══██╗████╗  ██║██╔════╝██║    ██║██╔════╝██╔══██╗
+███████║██╔██╗ ██║███████╗██║ █╗ ██║█████╗  ██████╔╝
+██╔══██║██║╚██╗██║╚════██║██║███╗██║██╔══╝  ██╔══██╗
+██║  ██║██║ ╚████║███████║╚███╔███╔╝███████╗██║  ██║
+╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝ ╚══╝╚══╝ ╚══════╝╚═╝  ╚═╝
+*/
+
+class AnswerTableSeeder extends Seeder
+{
+	public function run()
+	{
+		$answers = [
+			//   '¿Cuáles son los colores primarios?'
+			[
+				'uuid' => strval(Uuid::generate(4)),
+				'text' => 'Blanco',
+				'correct' => false,
+				'questionId' => Question::where('wording', '¿Cuáles son los colores primarios?')->first()->id
+			],
+			[
+				'uuid' => strval(Uuid::generate(4)),
+				'text' => 'Azul',
+				'correct' => true,
+				'questionId' => Question::where('wording', '¿Cuáles son los colores primarios?')->first()->id
+			],
+			[
+				'uuid' => strval(Uuid::generate(4)),
+				'text' => 'Negro',
+				'correct' => false,
+				'questionId' => Question::where('wording', '¿Cuáles son los colores primarios?')->first()->id
+			],
+			[
+				'uuid' => strval(Uuid::generate(4)),
+				'text' => 'Amarillo',
+				'correct' => true,
+				'questionId' => Question::where('wording', '¿Cuáles son los colores primarios?')->first()->id
+			],
+			[
+				'uuid' => strval(Uuid::generate(4)),
+				'text' => 'Rojo',
+				'correct' => true,
+				'questionId' => Question::where('wording', '¿Cuáles son los colores primarios?')->first()->id
+			],
+
+			// 'La capital de España es Sevilla.'
+			[
+				'uuid' => strval(Uuid::generate(4)),
+				'text' => 'Verdadero',
+				'correct' => false,
+				'questionId' => Question::where('wording', 'La capital de España es Sevilla.')->first()->id
+			],
+			[
+				'uuid' => strval(Uuid::generate(4)),
+				'text' => 'Falso',
+				'correct' => true,
+				'questionId' => Question::where('wording', 'La capital de España es Sevilla.')->first()->id
+			],
+
+			// 'Caracterísitcas de los mamíferos:'
+			[
+				'uuid' => strval(Uuid::generate(4)),
+				'text' => 'Pelo',
+				'correct' => null,
+				'questionId' => Question::where('wording', 'Caracterísitcas de los mamíferos:')->first()->id
+			],
+			[
+				'uuid' => strval(Uuid::generate(4)),
+				'text' => 'Leche',
+				'correct' => null,
+				'questionId' => Question::where('wording', 'Caracterísitcas de los mamíferos:')->first()->id
+			],
+			[
+				'uuid' => strval(Uuid::generate(4)),
+				'text' => 'Vientre',
+				'correct' => null,
+				'questionId' => Question::where('wording', 'Caracterísitcas de los mamíferos:')->first()->id
+			],
+			[
+				'uuid' => strval(Uuid::generate(4)),
+				'text' => 'Madre',
+				'correct' => null,
+				'questionId' => Question::where('wording', 'Caracterísitcas de los mamíferos:')->first()->id
+			]
+		];
+
+		foreach ($answers as $answer) {
+			Answer::Create($answer);
 		}
 	}
 }
