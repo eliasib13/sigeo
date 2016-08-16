@@ -5,8 +5,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Webpatser\Uuid\Uuid;
+
+/*** Models ***/
+
 use App\User;
 use App\Exam;
+use App\Question;
 
 class DatabaseSeeder extends Seeder {
 
@@ -19,11 +23,13 @@ class DatabaseSeeder extends Seeder {
 	{
 		Model::unguard();
 
+		DB::table('questions')->delete();
 		DB::table('exams')->delete();
 		DB::table('users')->delete();
 
 		$this->call('UserTableSeeder');
 		$this->call('ExamTableSeeder');
+		$this->call('QuestionTableSeeder');
 
 	}
 
@@ -106,6 +112,43 @@ class ExamTableSeeder extends Seeder
 
 		foreach ($exams as $exam) {
 			Exam::Create($exam);
+		}
+	}
+}
+
+/*
+ ██████╗ ██╗   ██╗███████╗███████╗████████╗██╗ ██████╗ ███╗   ██╗
+██╔═══██╗██║   ██║██╔════╝██╔════╝╚══██╔══╝██║██╔═══██╗████╗  ██║
+██║   ██║██║   ██║█████╗  ███████╗   ██║   ██║██║   ██║██╔██╗ ██║
+██║▄▄ ██║██║   ██║██╔══╝  ╚════██║   ██║   ██║██║   ██║██║╚██╗██║
+╚██████╔╝╚██████╔╝███████╗███████║   ██║   ██║╚██████╔╝██║ ╚████║
+╚══▀▀═╝  ╚═════╝ ╚══════╝╚══════╝   ╚═╝   ╚═╝ ╚═════╝ ╚═╝  ╚═══╝
+*/
+
+class QuestionTableSeeder extends Seeder
+{
+	public function run()
+	{
+		$questions = [
+			[
+				'uuid' => strval(Uuid::generate(4)),
+				'wording' => '¿Cuáles son los colores primarios?',
+				'examId' => Exam::where('name', 'Examen 1 de Administrador')->first()->id
+			],
+			[
+				'uuid' => strval(Uuid::generate(4)),
+				'wording' => 'La capital de España es Sevilla.',
+				'examId' => Exam::where('name', 'Examen 2 de Administrador')->first()->id
+			],
+			[
+				'uuid' => strval(Uuid::generate(4)),
+				'wording' => 'Caracterísitcas de los mamíferos:',
+				'examId' => Exam::where('name', 'Examen 1 de Usuario Test')->first()->id
+			]
+		];
+
+		foreach ($questions as $question) {
+			Question::Create($question);
 		}
 	}
 }
