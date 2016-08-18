@@ -12,6 +12,7 @@ use App\User;
 use App\Exam;
 use App\Question;
 use App\Answer;
+use App\Room;
 
 class DatabaseSeeder extends Seeder {
 
@@ -24,6 +25,7 @@ class DatabaseSeeder extends Seeder {
 	{
 		Model::unguard();
 
+		DB::table('rooms')->delete();
 		DB::table('answers')->delete();
 		DB::table('questions')->delete();
 		DB::table('exams')->delete();
@@ -33,6 +35,7 @@ class DatabaseSeeder extends Seeder {
 		$this->call('ExamTableSeeder');
 		$this->call('QuestionTableSeeder');
 		$this->call('AnswerTableSeeder');
+		$this->call('RoomTableSeeder');
 
 	}
 
@@ -245,6 +248,42 @@ class AnswerTableSeeder extends Seeder
 
 		foreach ($answers as $answer) {
 			Answer::Create($answer);
+		}
+	}
+}
+
+/*
+██████╗  ██████╗  ██████╗ ███╗   ███╗
+██╔══██╗██╔═══██╗██╔═══██╗████╗ ████║
+██████╔╝██║   ██║██║   ██║██╔████╔██║
+██╔══██╗██║   ██║██║   ██║██║╚██╔╝██║
+██║  ██║╚██████╔╝╚██████╔╝██║ ╚═╝ ██║
+╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚═╝     ╚═╝
+*/
+
+class RoomTableSeeder extends Seeder {
+	public function run() {
+		$rooms = [
+			[
+				'uuid' => strval(Uuid::generate(4)),
+				'name' => 'Room de Administrador',
+				'creatorId' => User::where('email', 'admin@email.com')->first()->id,
+				'examId' => User::where('email', 'admin@email.com')->first()->exams->first()->id,
+				'openedAt' => new DateTime('2016-12-01 08:00:00'),
+				'closedAt' => new DateTime('2016-12-15 23:59:59')
+			],
+			[
+				'uuid' => strval(Uuid::generate(4)),
+				'name' => 'Room de User Test',
+				'creatorId' => User::where('email', 'usertest@email.com')->first()->id,
+				'examId' => User::where('email', 'usertest@email.com')->first()->exams->first()->id,
+				'openedAt' => new DateTime('2016-12-17 08:00:00'),
+				'closedAt' => new DateTime('2016-12-21 23:59:59')
+			]
+		];
+
+		foreach ($rooms as $room) {
+			Room::Create($room);
 		}
 	}
 }

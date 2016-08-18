@@ -34,7 +34,7 @@ class Exam extends Model {
      * return User
      */
     public function creator() {
-        return $this->belongsTo('User');
+        return $this->belongsTo('App\User', 'creatorId');
     }
 
     /**
