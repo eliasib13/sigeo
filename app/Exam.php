@@ -48,7 +48,7 @@ class Exam extends Model {
      * @return Question[]
      */
     public function questions() {
-        return $this->hasMany('Question');
+        return $this->hasMany('App\Question', 'examId');
     }
 
     /**

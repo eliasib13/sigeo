@@ -31,7 +31,7 @@ class Question extends Model {
      * @return Answer[]
      */
     public function answers() {
-        return $this->hasMany('Answer', 'answer_id');
+        return $this->hasMany('App\Answer', 'answer_id');
     }
 
     /**
@@ -40,6 +40,15 @@ class Question extends Model {
      * @var integer
      */
     protected $examId;
+
+    /**
+     * Exam
+     *
+     * @return Exam;
+     */
+    public function exam() {
+        return $this->belongsTo('App\Exam', 'examId');
+    }
 
     /**
      * Score of this question
