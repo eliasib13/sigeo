@@ -13,11 +13,13 @@
 
 Route::get('/', 'WelcomeController@index');
 
-Route::get('home', 'HomeController@index');
+//Route::get('home', 'HomeController@index');
+//
+//Route::get('hello/{name?}', function($name = 'World'){
+//	return 'Hello ' . $name . '!';
+//});
 
-Route::get('hello/{name?}', function($name = 'World'){
-	return 'Hello ' . $name . '!';
-});
+Route::get('login', 'Login\LoginController@index');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
