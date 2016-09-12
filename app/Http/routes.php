@@ -21,6 +21,8 @@ Route::get('/', 'WelcomeController@index');
 
 Route::get('login', 'Login\LoginController@index');
 
+Route::get('dashboard', 'Dashboard\DashboardController@index');
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',

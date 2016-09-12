@@ -1,0 +1,13 @@
+.login-container {
+    max-width: 530px;
+    padding: 0 15px;
+    margin: 50px auto;
+}
+
+#forgot-password {
+    padding-left: 50%;
+}
+
+#forgot-password:hover {
+    text-decoration: underline;
+}

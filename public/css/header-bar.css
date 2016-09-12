@@ -5,8 +5,8 @@
     display: block;
     top: 0;
     left: 0;
-    background-color: rgba(255, 40, 52, 0.73);
-    box-shadow: 0 3px 5px;
+    background-color: rgb(255, 72, 83);
+    box-shadow: 0 2px 5px #AAA;
     padding: 15px 15px;
 
     color: white;
@@ -14,4 +14,24 @@
 
 .header-bar > h1 {
     color: white !important;
+}
+
+.header-bar-buttons {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+}
+
+.header-bar-buttons > .button {
+    display: inline-block;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.header-bar-buttons > .button:hover {
+    font-weight: bold;
+}
+
+.header-bar-buttons > .button > a, .header-bar-buttons > .button > a:hover {
+    color: white;
 }

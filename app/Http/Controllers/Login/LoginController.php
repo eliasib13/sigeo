@@ -19,7 +19,7 @@ class LoginController extends Controller
     public function __construct()
     {
         if (Session::get('isLogged')) {
-            return redirect('home');
+            return redirect('dashboard');
         }
     }
 

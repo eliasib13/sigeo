@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.css"/>
     <link rel="stylesheet" href="css/header-bar.css" />
     <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/login/login.css" />
+    <link rel="stylesheet" href="css/dashboard/dashboard.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.js"></script>
 </head>

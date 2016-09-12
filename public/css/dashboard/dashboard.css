@@ -1,0 +1,14 @@
+.dashboard-container {
+    min-height: 500px;
+    background-color: rgba(46, 109, 164, 0.43);
+    max-width: 95%;
+    margin: 30px auto;
+    text-align: center;
+}
+
+.dashboard-container > .ui.segment {
+    display: inline-block;
+    width: 47%;
+    margin: 10px 15px;
+    height: 100%;
+}
