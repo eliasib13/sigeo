@@ -1,6 +1,5 @@
 .dashboard-container {
     min-height: 500px;
-    background-color: rgba(46, 109, 164, 0.43);
     max-width: 95%;
     margin: 30px auto;
     text-align: center;
@@ -11,4 +10,23 @@
     width: 47%;
     margin: 10px 15px;
     height: 100%;
+    text-align: left;
+}
+
+.segment-title > h3 {
+    display: inline;
+}
+
+.segment-title > i {
+    position: absolute;
+    top: 20px;
+    right: 15px;
+    cursor: pointer;
+}
+
+.segment-title > a {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
 }
