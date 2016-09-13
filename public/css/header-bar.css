@@ -8,12 +8,15 @@
     background-color: rgb(255, 72, 83);
     box-shadow: 0 2px 5px #AAA;
     padding: 15px 15px;
+    z-index: 1000;
 
     color: white;
 }
 
-.header-bar > h1 {
+.header-bar > h1,
+.header-bar > h1 > a {
     color: white !important;
+    cursor: pointer;
 }
 
 .header-bar-buttons {

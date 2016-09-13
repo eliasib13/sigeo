@@ -13,6 +13,10 @@
     text-align: left;
 }
 
+.dashboard-container > .ui.segment.full-width {
+    width: 97%;
+}
+
 .segment-title > h3 {
     display: inline;
 }
