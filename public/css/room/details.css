@@ -1,0 +1,18 @@
+.button-bar {
+    margin-top: 15px;
+    margin-left: 30px;
+}
+
+.button > a {
+    color: inherit;
+}
+
+.room-form-container {
+    width: 95%;
+    margin: 35px auto;
+}
+
+#users-invited-list {
+    max-height: 250px;
+    overflow-y: scroll;
+}

@@ -23,6 +23,8 @@ Route::get('login', 'Login\LoginController@index');
 
 Route::get('dashboard', 'Dashboard\DashboardController@index');
 
+Route::get('room/{id}', 'Room\RoomDetailsController@index');
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
