@@ -23,7 +23,9 @@ Route::get('login', 'Login\LoginController@index');
 
 Route::get('dashboard', 'Dashboard\DashboardController@index');
 
-Route::get('room/{id}', 'Room\RoomDetailsController@index');
+Route::get('room/details/{id}', 'Room\RoomDetailsController@index');
+Route::get('room/new', 'Room\RoomNewController@index');
+
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

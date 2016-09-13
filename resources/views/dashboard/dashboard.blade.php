@@ -7,7 +7,7 @@
             <div class="ui segment">
                 <div class="segment-title">
                     <h3>My rooms</h3>
-                    <i class="plus icon right aligned"></i>
+                    <a href="room/new" class="inherit-color"><i class="plus icon right aligned"></i></a>
                 </div>
                 <div class="ui divider"></div>
                 <div class="ui relaxed divided list">

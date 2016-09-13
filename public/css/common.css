@@ -1,3 +1,11 @@
 .offset-header {
     padding-top: 65px;
 }
+
+.white {
+    color: white;
+}
+
+.inherit-color {
+    color: inherit;
+}
