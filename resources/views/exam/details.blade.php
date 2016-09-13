@@ -50,7 +50,7 @@
                                 <div class="grouped fields">
                                     <div class="field">
                                         <div class="ui radio checkbox">
-                                            <input type="radio" name="fruit" tabindex="0" class="hidden">
+                                            <input type="radio" name="fruit" checked tabindex="0" class="hidden">
                                             <label>8</label>
                                         </div>
                                     </div>
@@ -71,6 +71,12 @@
                                             <input type="radio" name="fruit" tabindex="0" class="hidden">
                                             <label>None answer is correct.</label>
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="two fields">
+                                    <div class="field">
+                                        <label>Question score</label>
+                                        <input type="number" value="1" />
                                     </div>
                                 </div>
                             </div>
