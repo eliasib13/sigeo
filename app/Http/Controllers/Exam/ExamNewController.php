@@ -3,24 +3,23 @@
  * Created by PhpStorm.
  * User: eliasib
  * Date: 13/9/16
- * Time: 17:21
+ * Time: 17:58
  */
 
-namespace App\Http\Controllers\Room;
-
+namespace App\Http\Controllers\Exam;
 
 
 use App\Http\Controllers\Controller;
 
-class RoomNewController extends Controller
+class ExamNewController extends Controller
 {
-
     /**
-     * Show the new room screen to the user.
+     * Show the new exam screen to the user.
      *
      * @return Response;
      */
     public function index() {
-        return view('room/new');
+        return view('exam/new');
     }
+
 }
