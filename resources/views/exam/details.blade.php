@@ -21,7 +21,7 @@
         </div>
 
         <div class="room-form-container">
-            <form class="ui form">
+            <div class="ui form">
                 <div class="two fields">
                     <div class="field">
                         <label>Exam name</label>
@@ -50,25 +50,25 @@
                                 <div class="grouped fields">
                                     <div class="field">
                                         <div class="ui radio checkbox">
-                                            <input type="radio" name="fruit" checked tabindex="0" class="hidden">
+                                            <input type="radio" name="fruit" checked tabindex="0" class="hidden" disabled>
                                             <label>8</label>
                                         </div>
                                     </div>
                                     <div class="field">
                                         <div class="ui radio checkbox">
-                                            <input type="radio" name="fruit" tabindex="0" class="hidden">
+                                            <input type="radio" name="fruit" tabindex="0" class="hidden" disabled>
                                             <label>5</label>
                                         </div>
                                     </div>
                                     <div class="field">
                                         <div class="ui radio checkbox">
-                                            <input type="radio" name="fruit" tabindex="0" class="hidden">
+                                            <input type="radio" name="fruit" tabindex="0" class="hidden" disabled>
                                             <label>7</label>
                                         </div>
                                     </div>
                                     <div class="field">
                                         <div class="ui radio checkbox">
-                                            <input type="radio" name="fruit" tabindex="0" class="hidden">
+                                            <input type="radio" name="fruit" tabindex="0" class="hidden" disabled>
                                             <label>None answer is correct.</label>
                                         </div>
                                     </div>
@@ -76,9 +76,12 @@
                                 <div class="two fields">
                                     <div class="field">
                                         <label>Question score</label>
-                                        <input type="number" value="1" />
+                                        <input disabled type="number" value="1" />
                                     </div>
                                 </div>
+                                <br>
+                                <button class="ui blue button"><i class="icon pencil"></i>Edit question</button>
+                                <button class="ui red button"><i class="icon remove"></i>Remove question</button>
                             </div>
                         </div>
                         <div class="title">
@@ -97,7 +100,7 @@
                         </div>
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 @endsection
