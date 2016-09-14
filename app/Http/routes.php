@@ -33,6 +33,7 @@ Route::get('exam/new', 'Exam\ExamNewController@index');
 Route::get('exam/details/{examId}/question/details/{questionId}', 'Question\QuestionDetailsController@index');
 Route::get('exam/details/{examId}/question/new', 'Question\QuestionNewController@index');
 
+Route::get('attempt/{attemptId}/{examId}/{questionId}', 'Attempt\AttemptController@index');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
