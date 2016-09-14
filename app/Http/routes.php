@@ -25,7 +25,7 @@ Route::get('dashboard', 'Dashboard\DashboardController@index');
 
 Route::get('room/details/{id}', 'Room\RoomDetailsController@index');
 Route::get('room/new', 'Room\RoomNewController@index');
-//Route::get('room/access/{id}', 'Room\RoomAccessController@index');
+Route::get('room/access/{id}', 'Room\RoomAccessController@index');
 
 Route::get('exam/details/{id}', 'Exam\ExamDetailsController@index');
 Route::get('exam/new', 'Exam\ExamNewController@index');
