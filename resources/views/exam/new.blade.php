@@ -4,7 +4,7 @@
     @include('header-bar')
     <div class="offset-header">
         <div class="button-bar">
-            <a href="../dashboard">
+            <a href="/sigeo/dashboard">
                 <button class="ui button small">
                         <i class="icon left arrow"></i>
                         Back
@@ -21,7 +21,7 @@
         </div>
 
         <div class="room-form-container">
-            <form class="ui form">
+            <div class="ui form">
                 <div class="two fields">
                     <div class="field">
                         <label>Exam name</label>
@@ -44,7 +44,7 @@
 
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 @endsection

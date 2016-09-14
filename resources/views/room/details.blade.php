@@ -4,7 +4,7 @@
     @include('header-bar')
     <div class="offset-header">
         <div class="button-bar">
-            <a href="../../dashboard">
+            <a href="/sigeo/dashboard">
                 <button class="ui button small">
                         <i class="icon left arrow"></i>
                         Back

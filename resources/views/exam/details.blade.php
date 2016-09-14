@@ -4,7 +4,7 @@
     @include('header-bar')
     <div class="offset-header">
         <div class="button-bar">
-            <a href="../dashboard">
+            <a href="/sigeo/dashboard">
                 <button class="ui button small">
                     <i class="icon left arrow"></i>
                     Back
@@ -35,10 +35,12 @@
                 <div class="ui divider"></div>
                 <div class="field">
                     <label>Questions</label>
-                    <button class="ui button small">
-                        <i class="icon plus"></i>
-                        Add question
-                    </button>
+                    <a href="{{ $id }}/question/new">
+                        <button class="ui button small">
+                            <i class="icon plus"></i>
+                            Add question
+                        </button>
+                    </a>
                     <br/><br/>
                     <div class="ui styled fluid accordion">
                         <div class="title">
