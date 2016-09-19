@@ -4,7 +4,8 @@
     @include('header-bar')
     <div class="offset-header">
         <div class="login-container">
-            <form class="ui form" method="post">
+            <form class="ui form" method="post" action="{{ $loginAction }}">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                 <div class="field">
                     <label>Email</label>
                     <input type="email" name="email" placeholder="example@email.com">

@@ -1,6 +1,9 @@
 <?php namespace App\Http\Controllers\Login;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Http\Request;
+use App\User;
 
 /**
  * Created by PhpStorm.
@@ -29,7 +32,28 @@ class LoginController extends Controller
      * @return Response;
      */
     public function index() {
-        return view('login/login');
+        if (Session::get('isLogged')) {
+            return redirect('dashboard');
+        }
+
+        $loginAction = url('doLogin');
+
+        return view('login/login',
+            [
+                'loginAction' => $loginAction
+            ]);
+    }
+
+    public function doLogin(Request $request) {
+        $userDb = User::where('email', '=', $request->input('email'))->firstOrFail();
+
+        if (Hash::check($request->input('password'), $userDb->password)) {
+            Session::put('isLogged', 'true');
+            return redirect('dashboard');
+        }
+        else {
+            return redirect('login');
+        }
     }
 
 }

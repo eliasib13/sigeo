@@ -4,7 +4,7 @@
     @include('header-bar')
     <div class="offset-header">
         <div class="button-bar">
-            <a href="/sigeo/exam/details/{{ $examId }}">
+            <a href="{{ url('exam/details', ['examId' => $examId]) }}">
                 <button class="ui button small">
                     <i class="icon left arrow"></i>
                     Back

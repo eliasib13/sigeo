@@ -20,6 +20,7 @@ Route::get('/', 'WelcomeController@index');
 //});
 
 Route::get('login', 'Login\LoginController@index');
+Route::post('doLogin', 'Login\LoginController@doLogin');
 
 Route::get('dashboard', 'Dashboard\DashboardController@index');
 

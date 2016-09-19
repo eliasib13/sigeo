@@ -4,7 +4,7 @@
     @include('header-bar')
     <div class="offset-header">
         <div class="button-bar">
-            <a href="/sigeo/dashboard">
+            <a href="{{ url('dashboard') }}">
                 <button class="ui button small">
                         <i class="icon left arrow"></i>
                         Back
