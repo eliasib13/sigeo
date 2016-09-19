@@ -19,6 +19,15 @@
                     <a href="" id="forgot-password"><i class="info circle icon"></i>Forgot your password?</a>
                 </div>
             </form>
+            @if($errorLogin)
+                <div class="ui negative message">
+                    <div class="header">
+                        Login error
+                    </div>
+                    <p>Incorrect email or password. Try again.
+                    </p>
+                </div>
+            @endif
         </div>
     </div>
 @endsection

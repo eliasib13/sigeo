@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers\Login;
 use App\Http\Controllers\Controller;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
@@ -28,6 +29,7 @@ class LoginController extends Controller
 
     /**
      * Show the login screen to the user.
+     * @param $errorLogin
      *
      * @return Response;
      */
@@ -37,22 +39,28 @@ class LoginController extends Controller
         }
 
         $loginAction = url('doLogin');
+        $errorLogin = Session::get('errorLogin', function() { return false; });
 
         return view('login/login',
             [
-                'loginAction' => $loginAction
+                'loginAction' => $loginAction,
+                'errorLogin' => $errorLogin
             ]);
     }
 
     public function doLogin(Request $request) {
-        $userDb = User::where('email', '=', $request->input('email'))->firstOrFail();
-
-        if (Hash::check($request->input('password'), $userDb->password)) {
-            Session::put('isLogged', 'true');
-            return redirect('dashboard');
+        try {
+            $userDb = User::where('email', '=', $request->input('email'))->firstOrFail();
+            if (Hash::check($request->input('password'), $userDb->password)) {
+                Session::put('isLogged', 'true');
+                return redirect('dashboard');
+            }
+            else {
+                return redirect('login')->with('errorLogin', true);
+            }
         }
-        else {
-            return redirect('login');
+        catch (ModelNotFoundException $e) {
+            return redirect('login')->with('errorLogin', true);
         }
     }
 
