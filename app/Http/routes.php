@@ -21,6 +21,8 @@ Route::get('/', 'WelcomeController@index');
 
 Route::get('login', 'Login\LoginController@index');
 Route::post('doLogin', 'Login\LoginController@doLogin');
+Route::get('doLogout', 'Login\LoginController@doLogout');
+
 
 Route::get('dashboard', 'Dashboard\DashboardController@index');
 

@@ -2,7 +2,19 @@
     <h1 class="ui header"><a href="{{ url('login') }}">SiGEO</a></h1>
     @if( Illuminate\Support\Facades\Auth::check() )
         <div class="header-bar-buttons">
-            <div class="button"><i class="icon user"></i>Test User<i class="icon caret down"></i></div>
+            <div class="ui pointing dropdown">
+                <i class="icon user"></i>
+                {{ Auth::user()->name }}
+                <i class="icon caret down"></i>
+                <div class="menu">
+                    <div class="item">
+                        <a href="{{ url('doLogout') }}" class="inherit-color">
+                            <i class="icon sign out"></i>
+                            Log out
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     @endif
 </div>

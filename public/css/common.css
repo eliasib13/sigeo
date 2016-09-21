@@ -6,6 +6,6 @@
     color: white;
 }
 
-.inherit-color {
+.inherit-color, .inherit-color:hover {
     color: inherit;
 }
