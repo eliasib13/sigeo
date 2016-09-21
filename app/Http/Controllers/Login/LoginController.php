@@ -1,10 +1,9 @@
 <?php namespace App\Http\Controllers\Login;
 use App\Http\Controllers\Controller;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
-use App\User;
+use Illuminate\Support\Facades\Auth;
+use PhpSpec\Exception\Exception;
 
 /**
  * Created by PhpStorm.
@@ -22,7 +21,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        if (Session::get('isLogged')) {
+        if (Auth::check()) {
             return redirect('dashboard');
         }
     }
@@ -34,7 +33,7 @@ class LoginController extends Controller
      * @return Response;
      */
     public function index() {
-        if (Session::get('isLogged')) {
+        if (Auth::check()) {
             return redirect('dashboard');
         }
 
@@ -50,16 +49,17 @@ class LoginController extends Controller
 
     public function doLogin(Request $request) {
         try {
-            $userDb = User::where('email', '=', $request->input('email'))->firstOrFail();
-            if (Hash::check($request->input('password'), $userDb->password)) {
-                Session::put('isLogged', 'true');
+            if (Auth::attempt([
+                'email' => $request->input('email'),
+                'password' => $request->input('password')
+            ])) {
                 return redirect('dashboard');
             }
             else {
                 return redirect('login')->with('errorLogin', true);
             }
         }
-        catch (ModelNotFoundException $e) {
+        catch (Exception $e) {
             return redirect('login')->with('errorLogin', true);
         }
     }
