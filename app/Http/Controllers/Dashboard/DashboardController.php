@@ -10,6 +10,8 @@ namespace App\Http\Controllers\Dashboard;
 
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Room;
 
 class DashboardController extends Controller
 {
@@ -20,7 +22,11 @@ class DashboardController extends Controller
      * @return Response;
      */
     public function index() {
-        return view('dashboard/dashboard');
+        $rooms = Room::where('creatorId', '=', Auth::user()->id)->get();
+
+        return view('dashboard/dashboard', [
+            'rooms' => $rooms
+        ]);
     }
 
 }

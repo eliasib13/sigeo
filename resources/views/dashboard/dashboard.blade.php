@@ -11,27 +11,15 @@
                 </div>
                 <div class="ui divider"></div>
                 <div class="ui relaxed divided list">
-                    <div class="item">
-                        <i class="large university middle aligned icon"></i>
-                        <div class="content">
-                            <a class="header">Maths 2</a>
-                            <div class="description">Exam "Equations" starts on 00:00h 23 Oct. 2016</div>
+                    @foreach($rooms as $room)
+                        <div class="item">
+                            <i class="large university middle aligned icon"></i>
+                            <div class="content">
+                                <a class="header">{{ $room->name }}</a>
+                                <div class="description">Exam "{{ App\Exam::find($room->examId)->name }}" starts on {{ date_format(date_create($room->openedAt), 'Y M n H:i') }}</div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="item">
-                        <i class="large university middle aligned icon"></i>
-                        <div class="content">
-                            <a class="header">Physics</a>
-                            <div class="description">Exam "Electromagnetic Field" ended on 23:59h 15 Jun. 2016</div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <i class="large university middle aligned icon"></i>
-                        <div class="content">
-                            <a class="header">Philosophy</a>
-                            <div class="description">No exam attached</div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
             <div class="ui segment">
