@@ -40,6 +40,10 @@ class Room extends Model {
      */
     protected $examId;
 
+    public function exam() {
+        return $this->belongsTo('App\Exam', 'examId');
+    }
+
     /**
      * Invited users to the room
      *
