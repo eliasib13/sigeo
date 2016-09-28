@@ -1,6 +1,6 @@
 <div class="header-bar">
     <h1 class="ui header"><a href="{{ url('login') }}">SiGEO</a></h1>
-    @if( Illuminate\Support\Facades\Auth::check() )
+    @if( Auth::check() )
         <div class="header-bar-buttons">
             <div class="ui pointing dropdown">
                 <i class="icon user"></i>

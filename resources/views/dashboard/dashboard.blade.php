@@ -7,7 +7,7 @@
             <div class="ui segment">
                 <div class="segment-title">
                     <h3>My rooms</h3>
-                    <a href="room/new" class="inherit-color"><i class="plus icon right aligned"></i></a>
+                    <a href="{{ url('room/new') }}" class="inherit-color"><i class="plus icon right aligned"></i></a>
                 </div>
                 <div class="ui divider"></div>
                 <div class="ui relaxed divided list">
@@ -16,7 +16,7 @@
                             <i class="large university middle aligned icon"></i>
                             <div class="content">
                                 <a class="header">{{ $room->name }}</a>
-                                <div class="description">Exam "{{ App\Exam::find($room->examId)->name }}" starts on {{ date_format(date_create($room->openedAt), 'Y M n H:i') }}</div>
+                                <div class="description">Exam "{{ $room->exam()->first()->name }}" starts on {{ date_format(date_create($room->openedAt), 'Y M n H:i') }}</div>
                             </div>
                         </div>
                     @endforeach
