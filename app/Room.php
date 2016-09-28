@@ -31,6 +31,10 @@ class Room extends Model {
      */
     protected $creatorId;
 
+    public function creator() {
+        return $this->belongsTo('App\User', 'creatorId');
+    }
+
     /**
      * ID of the room's exam
      */

@@ -42,6 +42,10 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		return $this->hasMany('App\Exam', 'creatorId');
 	}
 
+	public function rooms() {
+		return $this->hasMany('App\Room', 'creatorId');
+	}
+
 	/**
 	 * Invitations to rooms
 	 *
