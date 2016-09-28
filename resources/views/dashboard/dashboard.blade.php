@@ -47,27 +47,15 @@
                 </div>
                 <div class="ui divider"></div>
                 <div class="ui relaxed divided list">
-                    <div class="item">
-                        <i class="large file text middle aligned icon"></i>
-                        <div class="content">
-                            <a class="header">Equations</a>
-                            <div class="description">On "Maths 2" room</div>
+                    @foreach($exams as $exam)
+                        <div class="item">
+                            <i class="large file text middle aligned icon"></i>
+                            <div class="content">
+                                <a class="header">{{ $exam->name }}</a>
+                                <div class="description">On {{ sizeof($exam->rooms()->get()) }} room(s)</div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="item">
-                        <i class="large file text middle aligned icon"></i>
-                        <div class="content">
-                            <a class="header">Electromagnetic Field</a>
-                            <div class="description">On "Physics" room</div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <i class="large file text middle aligned icon"></i>
-                        <div class="content">
-                            <a class="header">European countries and capitals</a>
-                            <div class="description">No room attached</div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

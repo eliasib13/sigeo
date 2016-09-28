@@ -51,6 +51,10 @@ class Exam extends Model {
         return $this->hasMany('App\Question', 'examId');
     }
 
+    public function rooms() {
+        return $this->hasMany('App\Room', 'id');
+    }
+
     /**
      * Needed score to pass the exam
      *
