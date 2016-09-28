@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder {
 	{
 		Model::unguard();
 
+		DB::table('user_room')->delete();
 		DB::table('rooms')->delete();
 		DB::table('answers')->delete();
 		DB::table('questions')->delete();
@@ -283,7 +284,7 @@ class RoomTableSeeder extends Seeder {
 		];
 
 		foreach ($rooms as $room) {
-			Room::Create($room);
+			Room::Create($room)->invited()->attach($room['creatorId']);
 		}
 	}
 }

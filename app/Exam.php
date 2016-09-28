@@ -52,15 +52,6 @@ class Exam extends Model {
     }
 
     /**
-     * Users invited to the exam
-     *
-     * @return User[]
-     */
-    public function invited() {
-        return $this->hasMany('User');
-    }
-
-    /**
      * Needed score to pass the exam
      *
      * @var float

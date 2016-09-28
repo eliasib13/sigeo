@@ -42,7 +42,7 @@ class Room extends Model {
      * @return User[]
      */
     public function invited() {
-        return $this->hasMany('User', 'id');
+        return $this->belongsToMany('App\User', 'user_room');
     }
 
     /**
