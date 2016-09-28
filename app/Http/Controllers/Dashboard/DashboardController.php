@@ -22,10 +22,14 @@ class DashboardController extends Controller
      * @return Response;
      */
     public function index() {
-        $rooms = Room::where('creatorId', '=', Auth::user()->id)->get();
+        $rooms = Auth::user()->rooms()->get();
+        $invitations = Auth::user()->invitations()->get();
+        $exams = Auth::user()->exams()->get();
 
         return view('dashboard/dashboard', [
-            'rooms' => $rooms
+            'rooms' => $rooms,
+            'invitations' => $invitations,
+            'exams' => $exams
         ]);
     }
 

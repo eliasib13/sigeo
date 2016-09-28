@@ -25,17 +25,19 @@
             <div class="ui segment">
                 <div class="segment-title">
                     <h3>My invitations</h3>
-                    <a class="ui red circular label">1</a>
+                    <a class="ui red circular label">{{ sizeof($invitations) }}</a>
                 </div>
                 <div class="ui divider"></div>
                 <div class="ui relaxed divided list">
-                    <div class="item">
-                        <i class="large university middle aligned icon"></i>
-                        <div class="content">
-                            <a class="header">Digital Whiteboard Course</a>
-                            <div class="description">Exam "Final test" starts on 00:00h 19 Nov. 2016</div>
+                    @foreach($invitations as $invitation)
+                        <div class="item">
+                            <i class="large university middle aligned icon"></i>
+                            <div class="content">
+                                <a class="header">{{ $invitation->name }}</a>
+                                <div class="description">Exam "{{ $invitation->exam()->first()->name }}" starts on {{ date_format(date_create($invitation->openedAt), 'Y M n H:i') }}</div>
+                            </div>
                         </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
             <div class="ui segment full-width">
