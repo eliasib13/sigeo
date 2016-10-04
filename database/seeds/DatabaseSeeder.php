@@ -13,6 +13,7 @@ use App\Exam;
 use App\Question;
 use App\Answer;
 use App\Room;
+use App\Attempt;
 
 class DatabaseSeeder extends Seeder {
 
@@ -25,6 +26,7 @@ class DatabaseSeeder extends Seeder {
 	{
 		Model::unguard();
 
+		DB::table('attempts')->delete();
 		DB::table('user_room')->delete();
 		DB::table('rooms')->delete();
 		DB::table('answers')->delete();
@@ -37,6 +39,7 @@ class DatabaseSeeder extends Seeder {
 		$this->call('QuestionTableSeeder');
 		$this->call('AnswerTableSeeder');
 		$this->call('RoomTableSeeder');
+		$this->call('AttemptTableSeeder');
 
 	}
 
@@ -285,6 +288,42 @@ class RoomTableSeeder extends Seeder {
 
 		foreach ($rooms as $room) {
 			Room::Create($room)->invited()->attach($room['creatorId']);
+		}
+	}
+}
+
+/*
+ █████╗ ████████╗████████╗███████╗███╗   ███╗██████╗ ████████╗
+██╔══██╗╚══██╔══╝╚══██╔══╝██╔════╝████╗ ████║██╔══██╗╚══██╔══╝
+███████║   ██║      ██║   █████╗  ██╔████╔██║██████╔╝   ██║   
+██╔══██║   ██║      ██║   ██╔══╝  ██║╚██╔╝██║██╔═══╝    ██║   
+██║  ██║   ██║      ██║   ███████╗██║ ╚═╝ ██║██║        ██║   
+╚═╝  ╚═╝   ╚═╝      ╚═╝   ╚══════╝╚═╝     ╚═╝╚═╝        ╚═╝   
+*/
+
+class AttemptTableSeeder extends Seeder {
+	public function run() {
+		$attempts = [
+			[
+				'uuid' => strval(Uuid::generate(4)),
+				'examId' => User::where('email', 'admin@email.com')->first()->exams->first()->id,
+				'userId' => User::where('email', 'admin@email.com')->first()->id,
+				'startedAt' => new DateTime('2016-12-01 08:00:00'),
+				'finishedAt' =>  new DateTime('2016-12-21 23:59:59'),
+				'score' => 5.6
+			],
+			[
+				'uuid' => strval(Uuid::generate(4)),
+				'examId' => User::where('email', 'usertest@email.com')->first()->exams->first()->id,
+				'userId' => User::where('email', 'usertest@email.com')->first()->id,
+				'startedAt' => new DateTime('2016-12-17 08:00:00'),
+				'finishedAt' =>  new DateTime('2016-12-21 23:59:59'),
+				'score' => 7.85
+			]
+		];
+
+		foreach ($attempts as $attempt) {
+			Attempt::Create($attempt);
 		}
 	}
 }
