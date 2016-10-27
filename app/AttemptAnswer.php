@@ -31,7 +31,7 @@ class AttemptAnswer extends Model {
      * @return Answer[]
      */
     public function answers() {
-        return $this->hasMany('Answer', 'answer_id');
+        return $this->belongsToMany('Answer', 'attempt_answers_answers');
     }
 
     /**
