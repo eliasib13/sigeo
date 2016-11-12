@@ -14,6 +14,7 @@ use App\Question;
 use App\Answer;
 use App\Room;
 use App\Attempt;
+use App\AttemptAnswer;
 
 class DatabaseSeeder extends Seeder {
 
@@ -26,6 +27,8 @@ class DatabaseSeeder extends Seeder {
 	{
 		Model::unguard();
 
+		DB::table('attempt_answers_answers')->delete();
+		DB::table('attempt_answers')->delete();
 		DB::table('attempts')->delete();
 		DB::table('user_room')->delete();
 		DB::table('rooms')->delete();
@@ -40,6 +43,7 @@ class DatabaseSeeder extends Seeder {
 		$this->call('AnswerTableSeeder');
 		$this->call('RoomTableSeeder');
 		$this->call('AttemptTableSeeder');
+		$this->call('AttemptAnswerTableSeeder');
 
 	}
 
@@ -324,6 +328,36 @@ class AttemptTableSeeder extends Seeder {
 
 		foreach ($attempts as $attempt) {
 			Attempt::Create($attempt);
+		}
+	}
+}
+
+/*
+ █████╗ ████████╗████████╗███████╗███╗   ███╗██████╗ ████████╗      █████╗ ███╗   ██╗███████╗██╗    ██╗███████╗██████╗
+██╔══██╗╚══██╔══╝╚══██╔══╝██╔════╝████╗ ████║██╔══██╗╚══██╔══╝     ██╔══██╗████╗  ██║██╔════╝██║    ██║██╔════╝██╔══██╗
+███████║   ██║      ██║   █████╗  ██╔████╔██║██████╔╝   ██║        ███████║██╔██╗ ██║███████╗██║ █╗ ██║█████╗  ██████╔╝
+██╔══██║   ██║      ██║   ██╔══╝  ██║╚██╔╝██║██╔═══╝    ██║        ██╔══██║██║╚██╗██║╚════██║██║███╗██║██╔══╝  ██╔══██╗
+██║  ██║   ██║      ██║   ███████╗██║ ╚═╝ ██║██║        ██║        ██║  ██║██║ ╚████║███████║╚███╔███╔╝███████╗██║  ██║
+╚═╝  ╚═╝   ╚═╝      ╚═╝   ╚══════╝╚═╝     ╚═╝╚═╝        ╚═╝        ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝ ╚══╝╚══╝ ╚══════╝╚═╝  ╚═╝
+*/
+
+class AttemptAnswerTableSeeder extends Seeder {
+	public function run() {
+		$attempt_answers = [
+			[
+				'uuid' => strval(Uuid::generate(4)),
+				'questionId' => Question::where('examId', Exam::where('creatorId', User::where('email', 'admin@email.com')->first()->id)->first()->id)->first()->id,
+				'attemptId' => Attempt::where('userId', User::where('email', 'admin@email.com')->first()->id)->first()->id,
+			],
+			[
+				'uuid' => strval(Uuid::generate(4)),
+				'questionId' => Question::where('examId', Exam::where('creatorId', User::where('email', 'admin@email.com')->first()->id)->first()->id)->first()->id,
+				'attemptId' => Attempt::where('userId', User::where('email', 'admin@email.com')->first()->id)->first()->id,
+			]
+		];
+
+		foreach ($attempt_answers as $attempt_answer) {
+			AttemptAnswer::Create($attempt_answer)->answers()->attach(Answer::where('questionId', $attempt_answer['questionId'])->first()->id);
 		}
 	}
 }

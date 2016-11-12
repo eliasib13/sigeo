@@ -16,12 +16,14 @@ class CreateAttemptAnswersTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('uuid')->unique();
+			$table->integer('questionId')->unsigned();
 			$table->integer('attemptId')->unsigned();
 			$table->string('text')->nullable();
 			$table->timestamps();
 		});
 
 		Schema::table('attempt_answers', function(Blueprint $table) {
+			$table->foreign('questionId')->references('id')->on('questions');
 			$table->foreign('attemptId')->references('id')->on('attempts');
 		});
 	}

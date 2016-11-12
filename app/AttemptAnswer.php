@@ -26,12 +26,19 @@ class AttemptAnswer extends Model {
     protected $attemptId;
 
     /**
+     * Question
+     *
+     * @var integer
+     */
+    protected $questionId;
+
+    /**
      * Answers selected for this attempt answer
      *
      * @return Answer[]
      */
     public function answers() {
-        return $this->belongsToMany('Answer', 'attempt_answers_answers');
+        return $this->belongsToMany('App\Answer', 'attempt_answers_answers', 'attempt_id');
     }
 
     /**
