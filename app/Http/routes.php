@@ -29,15 +29,27 @@ Route::group(['middleware' => 'auth'], function() {
 
 	Route::get('results', 'Results\ResultsController@index');
 
-	Route::get('room/details/{id}', 'Room\RoomDetailsController@index');
-	Route::get('room/new', 'Room\RoomNewController@index');
-	Route::get('room/access/{id}', 'Room\RoomAccessController@index');
+	Route::group(['prefix' => 'room', 'namespace' => 'Room'], function() {
 
-	Route::get('exam/details/{id}', 'Exam\ExamDetailsController@index');
-	Route::get('exam/new', 'Exam\ExamNewController@index');
+		Route::get('details/{id}', 'RoomDetailsController@index');
+		Route::get('new', 'RoomNewController@index');
+		Route::get('access/{id}', 'RoomAccessController@index');
 
-	Route::get('exam/details/{examId}/question/details/{questionId}', 'Question\QuestionDetailsController@index');
-	Route::get('exam/details/{examId}/question/new', 'Question\QuestionNewController@index');
+	});
+
+	Route::group(['prefix' => 'exam'], function() {
+
+		Route::get('details/{id}', 'Exam\ExamDetailsController@index');
+		Route::get('new', 'Exam\ExamNewController@index');
+
+		Route::group(['prefix' => 'details/{examId}/question'], function() {
+
+			Route::get('details/{questionId}', 'Question\QuestionDetailsController@index');
+			Route::get('new', 'Question\QuestionNewController@index');
+
+		});
+
+	});
 
 	Route::get('attempt/{attemptId}/{examId}/{questionId}', 'Attempt\AttemptController@index');
 
