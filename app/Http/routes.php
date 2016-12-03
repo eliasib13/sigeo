@@ -23,22 +23,25 @@ Route::get('login', 'Login\LoginController@index');
 Route::post('doLogin', 'Login\LoginController@doLogin');
 Route::get('doLogout', 'Login\LoginController@doLogout');
 
+Route::group(['middleware' => 'auth'], function() {
 
-Route::get('dashboard', 'Dashboard\DashboardController@index');
+	Route::get('dashboard', 'Dashboard\DashboardController@index');
 
-Route::get('results', 'Results\ResultsController@index');
+	Route::get('results', 'Results\ResultsController@index');
 
-Route::get('room/details/{id}', 'Room\RoomDetailsController@index');
-Route::get('room/new', 'Room\RoomNewController@index');
-Route::get('room/access/{id}', 'Room\RoomAccessController@index');
+	Route::get('room/details/{id}', 'Room\RoomDetailsController@index');
+	Route::get('room/new', 'Room\RoomNewController@index');
+	Route::get('room/access/{id}', 'Room\RoomAccessController@index');
 
-Route::get('exam/details/{id}', 'Exam\ExamDetailsController@index');
-Route::get('exam/new', 'Exam\ExamNewController@index');
+	Route::get('exam/details/{id}', 'Exam\ExamDetailsController@index');
+	Route::get('exam/new', 'Exam\ExamNewController@index');
 
-Route::get('exam/details/{examId}/question/details/{questionId}', 'Question\QuestionDetailsController@index');
-Route::get('exam/details/{examId}/question/new', 'Question\QuestionNewController@index');
+	Route::get('exam/details/{examId}/question/details/{questionId}', 'Question\QuestionDetailsController@index');
+	Route::get('exam/details/{examId}/question/new', 'Question\QuestionNewController@index');
 
-Route::get('attempt/{attemptId}/{examId}/{questionId}', 'Attempt\AttemptController@index');
+	Route::get('attempt/{attemptId}/{examId}/{questionId}', 'Attempt\AttemptController@index');
+
+});
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
