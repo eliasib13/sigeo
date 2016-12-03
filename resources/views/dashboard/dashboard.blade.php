@@ -15,7 +15,7 @@
                         <div class="item">
                             <i class="large university middle aligned icon"></i>
                             <div class="content">
-                                <a class="header">{{ $room->name }}</a>
+                                <a class="header" href="{{ url('room/details/' . $room->id) }}">{{ $room->name }}</a>
                                 <div class="description">Exam "{{ $room->exam()->first()->name }}" starts on {{ date_format(date_create($room->openedAt), 'Y M n H:i') }}</div>
                             </div>
                         </div>
@@ -33,7 +33,7 @@
                         <div class="item">
                             <i class="large university middle aligned icon"></i>
                             <div class="content">
-                                <a class="header">{{ $invitation->name }}</a>
+                                <a class="header" href="{{ url('room/access/' . $invitation->id) }}">{{ $invitation->name }}</a>
                                 <div class="description">Exam "{{ $invitation->exam()->first()->name }}" starts on {{ date_format(date_create($invitation->openedAt), 'Y M n H:i') }}</div>
                             </div>
                         </div>
@@ -43,7 +43,7 @@
             <div class="ui segment full-width">
                 <div class="segment-title">
                     <h3>My exams</h3>
-                    <i class="plus icon right aligned"></i>
+                    <a href="{{ url('exam/new') }}" class="inherit-color"><i class="plus icon right aligned"></i></a>
                 </div>
                 <div class="ui divider"></div>
                 <div class="ui relaxed divided list">
@@ -51,7 +51,7 @@
                         <div class="item">
                             <i class="large file text middle aligned icon"></i>
                             <div class="content">
-                                <a class="header">{{ $exam->name }}</a>
+                                <a class="header" href="{{ url('exam/details/' . $exam->id) }}">{{ $exam->name }}</a>
                                 <div class="description">On {{ sizeof($exam->rooms()->get()) }} room(s)</div>
                             </div>
                         </div>
