@@ -6,7 +6,9 @@
         <div class="room-form-container">
             <h2><i class="icon university"></i>Maths 2</h2>
             <div class="ui divider"></div>
-            <button class="ui button"><i class="icon left arrow"></i>Back</button>
+            <a href="{{ url('dashboard') }}">
+                <button class="ui button"><i class="icon left arrow"></i>Back</button>
+            </a>
             <h3>On this room: <i class="icon text file"></i>Equations</h3>
             <table class="ui celled table">
                 <tr>

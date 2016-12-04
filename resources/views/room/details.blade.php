@@ -25,7 +25,7 @@
                 <div class="two fields">
                     <div class="field">
                         <label>Room name</label>
-                        <input type="text" value="Maths 2" placeholder="Room name"/>
+                        <input type="text" value="{{ $room->name }}" placeholder="Room name"/>
                     </div>
                     <div class="field">
                         <label>Exam attached</label>
@@ -45,15 +45,15 @@
                     <div class="field">
                         <label>Opening datetime</label>
                         <div class="two fields">
-                            <div class="field"><input type="date" placeholder="Date" value="2016-10-20"/></div>
-                            <div class="field"><input type="time" placeholder="Time" value="00:00"/></div>
+                            <div class="field"><input type="date" placeholder="Date" value="{{ date_format(date_create($room->openedAt), 'Y-m-d') }}"/></div>
+                            <div class="field"><input type="time" placeholder="Time" value="{{ date_format(date_create($room->openedAt), 'H:i') }}"/></div>
                         </div>
                     </div>
                     <div class="field">
                         <label>Closing datetime</label>
                         <div class="two fields">
-                            <div class="field"><input type="date" placeholder="Date" value="2016-10-30"/></div>
-                            <div class="field"><input type="time" placeholder="Time" value="23:59"/></div>
+                            <div class="field"><input type="date" placeholder="Date" value="{{ date_format(date_create($room->closedAt), 'Y-m-d') }}"/></div>
+                            <div class="field"><input type="time" placeholder="Time" value="{{ date_format(date_create($room->closedAt), 'H:i') }}"/></div>
                         </div>
                     </div>
                 </div>
@@ -69,26 +69,18 @@
                     <div class="field">
                         <label>Users invited</label>
                         <div class="ui relaxed divided list">
-                            <div class="item">
-                                <div class="right floated content">
-                                    <i class="icon large remove"></i>
+                            @foreach($room->invited()->get() as $userInvited)
+                                <div class="item">
+                                    <div class="right floated content">
+                                        <i class="icon large remove"></i>
+                                    </div>
+                                    <i class="large user middle aligned icon"></i>
+                                    <div class="content">
+                                        <span class="header">{{ $userInvited->name }}</span>
+                                        <div class="description">{{ $userInvited->email }}</div>
+                                    </div>
                                 </div>
-                                <i class="large user middle aligned icon"></i>
-                                <div class="content">
-                                    <span class="header">Ricky Town</span>
-                                    <div class="description">r.town@email.com</div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="right floated content">
-                                    <i class="icon large remove"></i>
-                                </div>
-                                <i class="large user middle aligned icon"></i>
-                                <div class="content">
-                                    <span class="header">Alex Sanders</span>
-                                    <div class="description">a.sanders@email.com</div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
