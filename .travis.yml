@@ -19,3 +19,6 @@ script:
   - php artisan db:seed --env=testing --no-interaction -vvv
   - vendor/bin/phpunit
   - php artisan migrate:rollback --env=testing --no-interaction -vvv
+
+deploy:
+  provider: azure_web_apps
