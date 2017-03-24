@@ -21,4 +21,10 @@ script:
   - php artisan migrate:rollback --env=testing --no-interaction -vvv
 
 deploy:
-  provider: azure_web_apps
+  - provider: azure_web_apps
+    on: master
+    verbose: true
+  - provider: azure_web_apps
+    on: develop
+    site: $AZURE_WA_STAGING_SITE
+    verbose: true
