@@ -20,4 +20,10 @@ script:
   - php artisan migrate:rollback --env=testing --no-interaction -vvv
 
 deploy:
-  provider: azure_web_apps
+  - provider: azure_web_apps
+    on: master
+  - provider: azure_web_apps
+    on: develop
+    username: $AZURE_WA_STAGING_USERNAME
+    password: $AZURE_WA_STAGING_PASSWORD
+    site: $AZURE_WA_STAGING_SITE
