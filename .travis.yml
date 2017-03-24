@@ -22,6 +22,9 @@ script:
 deploy:
   - provider: azure_web_apps
     on: master
+    username: $AZURE_WA_USERNAME
+    password: $AZURE_WA_PASSWORD
+    site: $AZURE_WA_SITE
     verbose: true
   - provider: azure_web_apps
     on: develop
