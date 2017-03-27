@@ -22,9 +22,9 @@ class DashboardController extends Controller
      * @return Response;
      */
     public function index() {
-        $rooms = Auth::user()->rooms()->get();
-        $invitations = Auth::user()->invitations()->get();
-        $exams = Auth::user()->exams()->get();
+        $rooms = Auth::user()->rooms()->get()->all();
+        $invitations = Auth::user()->invitations()->get()->all();
+        $exams = Auth::user()->exams()->get()->all();
 
         return view('dashboard/dashboard', [
             'rooms' => $rooms,

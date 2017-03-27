@@ -2,6 +2,10 @@
 
 return [
 
+	'env' => env('APP_ENV', 'production'),
+
+	'name' => 'SiGEO',
+
 	/*
 	|--------------------------------------------------------------------------
 	| Application Debug Mode
@@ -80,7 +84,7 @@ return [
 
 	'key' => env('APP_KEY', 'eaAJlaAlABGDmSOIOoBKZBuwZnGdjYMn'),
 
-	'cipher' => MCRYPT_RIJNDAEL_128,
+	'cipher' => 'AES-256-CBC',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -113,12 +117,10 @@ return [
 		/*
 		 * Laravel Framework Service Providers...
 		 */
-		'Illuminate\Foundation\Providers\ArtisanServiceProvider',
 		'Illuminate\Auth\AuthServiceProvider',
 		'Illuminate\Bus\BusServiceProvider',
 		'Illuminate\Cache\CacheServiceProvider',
 		'Illuminate\Foundation\Providers\ConsoleSupportServiceProvider',
-		'Illuminate\Routing\ControllerServiceProvider',
 		'Illuminate\Cookie\CookieServiceProvider',
 		'Illuminate\Database\DatabaseServiceProvider',
 		'Illuminate\Encryption\EncryptionServiceProvider',
@@ -135,15 +137,17 @@ return [
 		'Illuminate\Translation\TranslationServiceProvider',
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
+		'Illuminate\Broadcasting\BroadcastServiceProvider',
+		'Illuminate\Notifications\NotificationServiceProvider',
 
 		/*
 		 * Application Service Providers...
 		 */
 		'App\Providers\AppServiceProvider',
-		'App\Providers\BusServiceProvider',
 		'App\Providers\ConfigServiceProvider',
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
+		'App\Providers\BroadcastServiceProvider'
 
 	],
 
@@ -193,6 +197,7 @@ return [
 		'Uuid'		=> 'Webpatser\Uuid\Uuid',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
+		'Notification' => 'Illuminate\Support\Facades\Notification'
 
 	],
 

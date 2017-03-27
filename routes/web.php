@@ -13,12 +13,6 @@
 
 Route::get('/', 'WelcomeController@index');
 
-//Route::get('home', 'HomeController@index');
-//
-//Route::get('hello/{name?}', function($name = 'World'){
-//	return 'Hello ' . $name . '!';
-//});
-
 Route::get('login', 'Login\LoginController@index');
 Route::post('doLogin', 'Login\LoginController@doLogin');
 Route::get('doLogout', 'Login\LoginController@doLogout');
@@ -55,7 +49,3 @@ Route::group(['middleware' => 'auth'], function() {
 
 });
 
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);

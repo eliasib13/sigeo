@@ -25,7 +25,6 @@ class DatabaseSeeder extends Seeder {
 	 */
 	public function run()
 	{
-		Model::unguard();
 
 		DB::table('attempt_answers_answers')->delete();
 		DB::table('attempt_answers')->delete();

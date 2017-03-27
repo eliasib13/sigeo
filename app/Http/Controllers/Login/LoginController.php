@@ -38,7 +38,7 @@ class LoginController extends Controller
         }
 
         $loginAction = url('doLogin');
-        $errorLogin = Session::get('errorLogin', function() { return false; });
+        $errorLogin = session('errorLogin', false);
 
         return view('login/login',
             [

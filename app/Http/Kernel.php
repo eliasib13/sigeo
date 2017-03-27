@@ -15,7 +15,26 @@ class Kernel extends HttpKernel {
 		'Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse',
 		'Illuminate\Session\Middleware\StartSession',
 		'Illuminate\View\Middleware\ShareErrorsFromSession',
-		'App\Http\Middleware\VerifyCsrfToken',
+		'App\Http\Middleware\VerifyCsrfToken'
+	];
+
+	/**
+	 * The application's route middleware groups.
+	 *
+	 * @var array
+	 */
+	protected $middlewareGroups = [
+		'web' => [
+			\App\Http\Middleware\EncryptCookies::class,
+			\Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+			\Illuminate\View\Middleware\ShareErrorsFromSession::class,
+			\App\Http\Middleware\VerifyCsrfToken::class,
+			\Illuminate\Routing\Middleware\SubstituteBindings::class,
+		],
+		'api' => [
+			'throttle:60,1',
+			'bindings',
+		],
 	];
 
 	/**
@@ -27,6 +46,8 @@ class Kernel extends HttpKernel {
 		'auth' => 'App\Http\Middleware\Authenticate',
 		'auth.basic' => 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
 		'guest' => 'App\Http\Middleware\RedirectIfAuthenticated',
+		'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
+		'can' => \Illuminate\Auth\Middleware\Authorize::class
 	];
 
 }
