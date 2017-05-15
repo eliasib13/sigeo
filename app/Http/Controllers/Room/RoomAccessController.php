@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Room;
 
 
 use App\Http\Controllers\Controller;
+use App\Room;
 
 class RoomAccessController extends Controller
 {
@@ -20,6 +21,8 @@ class RoomAccessController extends Controller
      * @return Response;
      */
     public function index($id = 0) {
-        return view('room/access', ['id' => $id]);
+        $room = Room::where('id', $id)->first();
+
+        return view('room/access', ['id' => $id, 'room' => $room]);
     }
 }
