@@ -31,7 +31,7 @@ class Question extends Model {
      * @return Answer[]
      */
     public function answers() {
-        return $this->hasMany('App\Answer', 'answer_id');
+        return $this->hasMany('App\Answer', 'questionId');
     }
 
     /**

@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Exam;
 
 
 use App\Http\Controllers\Controller;
+use App\Exam;
 
 class ExamDetailsController extends Controller
 {
@@ -20,6 +21,8 @@ class ExamDetailsController extends Controller
      * @return Response;
      */
     public function index($id = 0) {
-        return view('exam/details', ['id' => $id]);
+        $exam = Exam::where('id', $id)->first();
+
+        return view('exam/details', ['id' => $id, 'exam' => $exam]);
     }
 }
