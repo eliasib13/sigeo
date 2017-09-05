@@ -16,7 +16,7 @@
                             <i class="large university middle aligned icon"></i>
                             <div class="content">
                                 <a class="header" href="{{ url('room/details/' . $room->id) }}">{{ $room->name }}</a>
-                                <div class="description">Exam "{{ $room->exam()->first()->name }}" starts on {{ date_format(date_create($room->openedAt), 'Y M n H:i') }}</div>
+                                <div class="description">Exam "{{ $room->exam()->first()->name }}" starts on {{ date_format(date_create($room->openedAt), 'Y M j H:i') }}</div>
                             </div>
                         </div>
                     @endforeach
@@ -34,7 +34,7 @@
                             <i class="large university middle aligned icon"></i>
                             <div class="content">
                                 <a class="header" href="{{ url('room/access/' . $invitation->id) }}">{{ $invitation->name }}</a>
-                                <div class="description">Exam "{{ $invitation->exam()->first()->name }}" starts on {{ date_format(date_create($invitation->openedAt), 'Y M n H:i') }}</div>
+                                <div class="description">Exam "{{ $invitation->exam()->first()->name }}" starts on {{ date_format(date_create($invitation->openedAt), 'Y M j H:i') }}</div>
                             </div>
                         </div>
                     @endforeach
