@@ -11,6 +11,7 @@ namespace App\Http\Controllers\Room;
 
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class RoomNewController extends Controller
 {
@@ -21,6 +22,10 @@ class RoomNewController extends Controller
      * @return Response;
      */
     public function index() {
-        return view('room/new');
+        $exams = Auth::user()->exams()->get()->all();
+
+        return view('room/new', [
+            'exams' => $exams
+        ]);
     }
 }

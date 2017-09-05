@@ -35,8 +35,9 @@
                             <div class="default text">Select Exam</div>
                             <div class="menu">
                                 <div class="item" data-value="-1">No exam</div>
-                                <div class="item" data-value="0">Equations</div>
-                                <div class="item" data-value="1">Electromagnetic Field</div>
+                                @foreach($exams as $exam)
+                                    <div class="item" data-value="{{$exam->id}}">{{$exam->name}}</div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
