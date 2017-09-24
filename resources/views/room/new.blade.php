@@ -10,18 +10,18 @@
                         Back
                 </button>
             </a>
-            <button class="ui primary button small">
+            <button class="ui primary button small" id="button-save">
                 <i class="icon floppy save"></i>
                 Save
             </button>
-            <button class="ui green button small">
+            <button class="ui green button small" id="button-save-back">
                 <i class="icon check circle"></i>
                 Save and go back
             </button>
         </div>
 
         <div class="room-form-container">
-            <form class="ui form">
+            <form class="ui form" id="new-room-form" method="POST" action="{{ url('room/new') }}">
                 <div class="two fields">
                     <div class="field">
                         <label>Room name</label>
@@ -76,7 +76,18 @@
                         </div>
                     </div>
                 </div>
+                <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
             </form>
         </div>
     </div>
+
+    <script>
+        var form = document.getElementById('new-room-form'),
+            buttonSave = document.getElementById('button-save');
+
+        buttonSave.addEventListener('click', function(e) {
+            form.submit();
+        });
+
+    </script>
 @endsection

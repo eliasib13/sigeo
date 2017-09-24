@@ -28,4 +28,8 @@ class RoomNewController extends Controller
             'exams' => $exams
         ]);
     }
+
+    public function save() {
+        die('YAYYYY!!');
+    }
 }
