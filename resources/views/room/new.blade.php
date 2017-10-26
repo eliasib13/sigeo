@@ -25,12 +25,12 @@
                 <div class="two fields">
                     <div class="field">
                         <label>Room name</label>
-                        <input type="text" placeholder="Room name"/>
+                        <input type="text" placeholder="Room name" name="name"/>
                     </div>
                     <div class="field">
                         <label>Exam attached</label>
                         <div class="ui selection dropdown">
-                            <input type="hidden" name="exam-id">
+                            <input type="hidden" name="examId">
                             <i class="dropdown icon"></i>
                             <div class="default text">Select Exam</div>
                             <div class="menu">
@@ -45,17 +45,15 @@
                 <div class="two fields">
                     <div class="field">
                         <label>Opening datetime</label>
-                        <div class="two fields">
-                            <div class="field"><input type="date" placeholder="Date" /></div>
-                            <div class="field"><input type="time" placeholder="Time" /></div>
-                        </div>
+                            <!-- <div class="field"><input type="date" placeholder="Date" /></div>
+                            <div class="field"><input type="time" placeholder="Time" /></div> -->
+                            <input type="datetime-local" placeholder="Date" name="openedAt"/>
                     </div>
                     <div class="field">
                         <label>Closing datetime</label>
-                        <div class="two fields">
-                            <div class="field"><input type="date" placeholder="Date" /></div>
-                            <div class="field"><input type="time" placeholder="Time" /></div>
-                        </div>
+                            <!-- <div class="field"><input type="date" placeholder="Date" /></div>
+                            <div class="field"><input type="time" placeholder="Time" /></div> -->
+                        <input type="datetime-local" placeholder="Date" name="closedAt"/>                            
                     </div>
                 </div>
                 <div class="ui divider"></div>

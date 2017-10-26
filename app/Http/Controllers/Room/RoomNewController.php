@@ -12,6 +12,9 @@ namespace App\Http\Controllers\Room;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use App\Room;
+use Webpatser\Uuid\Uuid;
 
 class RoomNewController extends Controller
 {
@@ -29,7 +32,27 @@ class RoomNewController extends Controller
         ]);
     }
 
-    public function save() {
-        die('YAYYYY!!');
+    public function save(Request $request) {
+        
+        try {
+            $newRoom = new Room();
+            $newRoom->uuid = strval(Uuid::generate(4));
+            $newRoom->name = $request->name;
+            $newRoom->creatorId = Auth::user()->id;
+            if (intval($request->examId) > 0) {
+                $newRoom->examId = $request->examId;
+            }
+            $newRoom->openedAt = new \DateTime($request->openedAt);
+            $newRoom->closedAt = new \DateTime($request->closedAt);
+            
+            if ($newRoom->save()) {
+                return redirect()->action('Room\RoomDetailsController@index' , [
+                    'id' => strval($newRoom->id)
+                ]);
+            }
+        }
+        catch (\Exception $e) {
+            die($e);
+        }
     }
 }
