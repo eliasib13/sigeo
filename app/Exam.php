@@ -52,7 +52,7 @@ class Exam extends Model {
     }
 
     public function rooms() {
-        return $this->hasMany('App\Room', 'id');
+        return $this->hasMany('App\Room', 'examId');
     }
 
     /**

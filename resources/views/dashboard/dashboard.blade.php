@@ -52,7 +52,7 @@
                             <i class="large file text middle aligned icon"></i>
                             <div class="content">
                                 <a class="header" href="{{ url('exam/details/' . $exam->id) }}">{{ $exam->name }}</a>
-                                <div class="description">On {{ sizeof($exam->rooms()->get()) }} room(s)</div>
+                                <div class="description">On {{ sizeof($exam->rooms) }} room(s)</div>
                             </div>
                         </div>
                     @endforeach
