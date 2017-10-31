@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Room;
 
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Room;
 
 class RoomDetailsController extends Controller
@@ -22,7 +23,12 @@ class RoomDetailsController extends Controller
      */
     public function index($id = 0) {
         $room = Room::where('id', $id)->first();
+        $exams = Auth::user()->exams()->get()->all();
 
-        return view('room/details', ['id' => $id, 'room' => $room]);
+        return view('room/details', [
+            'id' => $id, 
+            'room' => $room, 
+            'exams' => $exams
+        ]);
     }
 }

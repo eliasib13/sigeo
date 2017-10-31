@@ -30,31 +30,26 @@
                     <div class="field">
                         <label>Exam attached</label>
                         <div class="ui selection dropdown">
-                            <input type="hidden" name="exam-id">
+                            <input type="hidden" name="examId" value="{{$room->exam->id}}">
                             <i class="dropdown icon"></i>
                             <div class="default text">Select Exam</div>
                             <div class="menu">
-                                <div class="item" data-value="-1">No exam</div>
-                                <div class="item" data-value="">Equations</div>
-                                <div class="item" data-value="1">Electromagnetic Field</div>
-                            </div>
+                            <div class="item" data-value="-1">No exam</div>
+                            @foreach($exams as $exam)
+                                <div class="item" data-value="{{$exam->id}}">{{$exam->name}}</div>
+                            @endforeach
+                        </div>
                         </div>
                     </div>
                 </div>
                 <div class="two fields">
                     <div class="field">
                         <label>Opening datetime</label>
-                        <div class="two fields">
-                            <div class="field"><input type="date" placeholder="Date" value="{{ date_format(date_create($room->openedAt), 'Y-m-d') }}"/></div>
-                            <div class="field"><input type="time" placeholder="Time" value="{{ date_format(date_create($room->openedAt), 'H:i') }}"/></div>
-                        </div>
+                        <input type="datetime-local" placeholder="Date" name="openedAt" value="{{ date_format(date_create($room->openedAt), 'Y-m-d') . 'T' . date_format(date_create($room->openedAt), 'H:i') }}"/>
                     </div>
                     <div class="field">
                         <label>Closing datetime</label>
-                        <div class="two fields">
-                            <div class="field"><input type="date" placeholder="Date" value="{{ date_format(date_create($room->closedAt), 'Y-m-d') }}"/></div>
-                            <div class="field"><input type="time" placeholder="Time" value="{{ date_format(date_create($room->closedAt), 'H:i') }}"/></div>
-                        </div>
+                        <input type="datetime-local" placeholder="Date" name="closedAt" value="{{ date_format(date_create($room->closedAt), 'Y-m-d') . 'T' . date_format(date_create($room->closedAt), 'H:i') }}"/>
                     </div>
                 </div>
                 <div class="ui divider"></div>
