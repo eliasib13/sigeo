@@ -7,7 +7,7 @@
             <div class="ui segment">
                 <div class="segment-title">
                     <h3>My rooms</h3>
-                    <a href="{{ url('room/new') }}" class="inherit-color"><i class="plus icon right aligned"></i></a>
+                    <a href="{{ url('room/new') }}" class="inherit-color" title="New room"><i class="plus icon right aligned"></i></a>
                 </div>
                 <div class="ui divider"></div>
                 <div class="ui relaxed divided list">
@@ -43,7 +43,7 @@
             <div class="ui segment full-width">
                 <div class="segment-title">
                     <h3>My exams</h3>
-                    <a href="{{ url('exam/new') }}" class="inherit-color"><i class="plus icon right aligned"></i></a>
+                    <a href="{{ url('exam/new') }}" class="inherit-color" title="New exam"><i class="plus icon right aligned"></i></a>
                 </div>
                 <div class="ui divider"></div>
                 <div class="ui relaxed divided list">
