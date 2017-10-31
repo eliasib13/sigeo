@@ -46,9 +46,13 @@ class RoomNewController extends Controller
             $newRoom->closedAt = new \DateTime($request->closedAt);
             
             if ($newRoom->save()) {
-                return redirect()->action('Room\RoomDetailsController@index' , [
-                    'id' => strval($newRoom->id)
-                ]);
+                if (!intval($request->goBack)) {
+                    return redirect()->action('Room\RoomDetailsController@index' , [
+                        'id' => strval($newRoom->id)
+                    ]);
+                } else {
+                    return redirect()->action('Dashboard\DashboardController@index');
+                }
             }
         }
         catch (\Exception $e) {

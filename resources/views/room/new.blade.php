@@ -71,17 +71,24 @@
                     </div>
                 </div>
                 <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+                <input type="hidden" name="goBack" value="0" id="go-back-input" />
             </form>
         </div>
     </div>
 
     <script>
         var form = document.getElementById('new-room-form'),
-            buttonSave = document.getElementById('button-save');
+            buttonSave = document.getElementById('button-save'),
+            buttonSaveAndGoBack = document.getElementById('button-save-back');
 
         buttonSave.addEventListener('click', function(e) {
             form.submit();
         });
 
+
+        buttonSaveAndGoBack.addEventListener('click', function(e) {
+            document.getElementById('go-back-input').value = 1;
+            form.submit();
+        })
     </script>
 @endsection
