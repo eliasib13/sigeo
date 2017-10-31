@@ -45,14 +45,10 @@
                 <div class="two fields">
                     <div class="field">
                         <label>Opening datetime</label>
-                            <!-- <div class="field"><input type="date" placeholder="Date" /></div>
-                            <div class="field"><input type="time" placeholder="Time" /></div> -->
                             <input type="datetime-local" placeholder="Date" name="openedAt"/>
                     </div>
                     <div class="field">
                         <label>Closing datetime</label>
-                            <!-- <div class="field"><input type="date" placeholder="Date" /></div>
-                            <div class="field"><input type="time" placeholder="Time" /></div> -->
                         <input type="datetime-local" placeholder="Date" name="closedAt"/>                            
                     </div>
                 </div>
