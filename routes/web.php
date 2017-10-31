@@ -30,6 +30,7 @@ Route::group(['middleware' => 'auth'], function() {
 		Route::get('access/{id}', 'RoomAccessController@index');
 
 		Route::post('new', 'RoomNewController@save');
+		Route::post('edit/{id}', 'RoomDetailsController@save');
 	});
 
 	Route::group(['prefix' => 'exam'], function() {

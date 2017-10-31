@@ -10,22 +10,22 @@
                         Back
                 </button>
             </a>
-            <button class="ui primary button small">
+            <button class="ui primary button small" id="button-save">
                 <i class="icon floppy save"></i>
                 Save
             </button>
-            <button class="ui green button small">
+            <button class="ui green button small" id="button-save-back">
                 <i class="icon check circle"></i>
                 Save and go back
             </button>
         </div>
 
         <div class="room-form-container">
-            <form class="ui form">
+            <form class="ui form" id="edit-room-form" method="POST" action="{{ url('room/edit/' . strval($room->id)) }}">
                 <div class="two fields">
                     <div class="field">
                         <label>Room name</label>
-                        <input type="text" value="{{ $room->name }}" placeholder="Room name"/>
+                        <input type="text" value="{{ $room->name }}" placeholder="Room name" name="name"/>
                     </div>
                     <div class="field">
                         <label>Exam attached</label>
@@ -79,7 +79,25 @@
                         </div>
                     </div>
                 </div>
+                <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+                <input type="hidden" name="goBack" value="0" id="go-back-input" />
             </form>
         </div>
     </div>
+
+    <script>
+        var form = document.getElementById('edit-room-form'),
+            buttonSave = document.getElementById('button-save'),
+            buttonSaveAndGoBack = document.getElementById('button-save-back');
+
+        buttonSave.addEventListener('click', function(e) {
+            form.submit();
+        });
+
+
+        buttonSaveAndGoBack.addEventListener('click', function(e) {
+            document.getElementById('go-back-input').value = 1;
+            form.submit();
+        })
+    </script>
 @endsection

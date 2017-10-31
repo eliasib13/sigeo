@@ -11,6 +11,7 @@ namespace App\Http\Controllers\Room;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use App\Room;
 
 class RoomDetailsController extends Controller
@@ -30,5 +31,31 @@ class RoomDetailsController extends Controller
             'room' => $room, 
             'exams' => $exams
         ]);
+    }
+
+    public function save($id, Request $request) {
+        
+        try {
+            $currentRoom = Room::find(intval($request->id));
+            $currentRoom->name = $request->name;
+            if (intval($request->examId) > 0) {
+                $currentRoom->examId = $request->examId;
+            }
+            $currentRoom->openedAt = new \DateTime($request->openedAt);
+            $currentRoom->closedAt = new \DateTime($request->closedAt);
+            
+            if ($currentRoom->save()) {
+                if (!intval($request->goBack)) {
+                    return redirect()->action('Room\RoomDetailsController@index' , [
+                        'id' => strval($currentRoom->id)
+                    ]);
+                } else {
+                    return redirect()->action('Dashboard\DashboardController@index');
+                }
+            }
+        }
+        catch (\Exception $e) {
+            die($e);
+        }
     }
 }
