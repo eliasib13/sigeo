@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Exam;
 
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Exam;
 
 class ExamDetailsController extends Controller
@@ -24,5 +25,27 @@ class ExamDetailsController extends Controller
         $exam = Exam::where('id', $id)->first();
 
         return view('exam/details', ['id' => $id, 'exam' => $exam]);
+    }
+
+    public function save($id, Request $request) {
+        
+        try {
+            $currentExam = Exam::find(intval($request->id));
+            $currentExam->name = $request->name;
+            $currentExam->passingScore = $request->passingScore;
+            
+            if ($currentExam->save()) {
+                if (!intval($request->goBack)) {
+                    return redirect()->action('Exam\ExamDetailsController@index' , [
+                        'id' => strval($currentExam->id)
+                    ]);
+                } else {
+                    return redirect()->action('Dashboard\DashboardController@index');
+                }
+            }
+        }
+        catch (\Exception $e) {
+            die($e);
+        }
     }
 }
