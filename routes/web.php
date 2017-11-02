@@ -38,6 +38,7 @@ Route::group(['middleware' => 'auth'], function() {
 		Route::get('details/{id}', 'Exam\ExamDetailsController@index');
 		Route::get('new', 'Exam\ExamNewController@index');
 
+		Route::post('new', 'Exam\ExamNewController@save');
 		Route::post('edit/{id}', 'Exam\ExamDetailsController@save');
 
 		Route::group(['prefix' => 'details/{examId}/question'], function() {
