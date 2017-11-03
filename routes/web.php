@@ -23,6 +23,10 @@ Route::group(['middleware' => 'auth'], function() {
 
 	Route::get('results', 'Results\ResultsController@index');
 
+	Route::group(['prefix' => 'rest'], function() {
+		Route::get('findUser', 'RestController@findUser');		
+	});
+
 	Route::group(['prefix' => 'room', 'namespace' => 'Room'], function() {
 
 		Route::get('details/{id}', 'RoomDetailsController@index');
