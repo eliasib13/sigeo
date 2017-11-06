@@ -92,7 +92,8 @@
         var form = document.getElementById('edit-room-form'),
             buttonSave = document.getElementById('button-save'),
             buttonSaveAndGoBack = document.getElementById('button-save-back'),
-            searchUser = document.getElementById('search-user');
+            searchUser = document.getElementById('search-user'),
+            usersInvited = $('.user-invited');
 
 
         buttonSave.addEventListener('click', function(e) {
@@ -140,6 +141,10 @@
             }, 500);
         });
 
+        usersInvited.on('click', function() {
+            uninviteUser('{{$room->id}}', $(this).attr('data-id'));
+        })
+
         function getUserToInviteTemplate(user) {
             return `<div class="item" >
                         <div class="right floated content user-to-invite" data-id="${user.id}">
@@ -173,7 +178,20 @@
             $.get(url, function(data) {
                 if (data) {
                     $(`.user-to-invite[data-id=${userId}]`).parent().remove();
-                    $('#invited-users').append(getUserInvitedTemplate(data));
+                    var newElement = $(getUserInvitedTemplate(data));
+                    $('#invited-users').append(newElement);
+                    newElement.children('.user-invited').on('click', function() {
+                        uninviteUser('{{$room->id}}', $(this).attr('data-id'));
+                    });
+                }
+            });
+        };
+
+        function uninviteUser(roomId, userId) {
+            var url = `{{ url('rest/uninviteUserToRoom') }}/${roomId}/${userId}`;
+            $.get(url, function(data) {
+                if (data) {
+                    $(`.user-invited[data-id=${userId}]`).parent().remove();
                 }
             });
         };

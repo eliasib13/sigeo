@@ -59,4 +59,14 @@ class restController extends Controller
             return User::get(['id', 'name', 'email'])->find($userId);
         }
     }
+
+    public function uninviteUserToRoom($roomId, $userId) {
+        $room = Room::find(intval($roomId));
+        $userId = intval($userId);
+
+        if (sizeof($room->invited()->where('users.id', '=', $userId)->get()) > 0) {
+            $room->invited()->detach($userId);
+            return User::get(['id', 'name', 'email'])->find($userId);
+        }
+    }
 }

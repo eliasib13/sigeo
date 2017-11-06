@@ -28,6 +28,7 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::group(['prefix' => 'rest'], function() {
 		Route::get('findUser', 'RestController@findUser');
 		Route::get('inviteUserToRoom/{roomId}/{userId}', 'RestController@inviteUserToRoom');
+		Route::get('uninviteUserToRoom/{roomId}/{userId}', 'RestController@uninviteUserToRoom');
 	});
 
 	Route::group(['prefix' => 'room', 'namespace' => 'Room'], function() {
