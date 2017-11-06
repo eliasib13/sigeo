@@ -46,6 +46,11 @@ class RoomNewController extends Controller
             $newRoom->closedAt = new \DateTime($request->closedAt);
             
             if ($newRoom->save()) {
+                if (!empty($request->usersInvited)) {
+                    $userIds = explode(',', $request->usersInvited);
+                    $newRoom->invited()->attach($userIds);
+                }
+
                 if (!intval($request->goBack)) {
                     return redirect()->action('Room\RoomDetailsController@index' , [
                         'id' => strval($newRoom->id)
