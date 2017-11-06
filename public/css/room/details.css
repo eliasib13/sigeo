@@ -16,3 +16,7 @@
     max-height: 250px;
     overflow-y: scroll;
 }
+
+.user-to-invite, .user-invited { 
+    cursor: pointer;
+}

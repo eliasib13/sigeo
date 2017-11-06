@@ -17,6 +17,8 @@ Route::get('login', 'Login\LoginController@index');
 Route::post('doLogin', 'Login\LoginController@doLogin');
 Route::get('doLogout', 'Login\LoginController@doLogout');
 
+Route::get('rest/login', 'RestController@login');
+
 Route::group(['middleware' => 'auth'], function() {
 
 	Route::get('dashboard', 'Dashboard\DashboardController@index');
@@ -24,7 +26,8 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('results', 'Results\ResultsController@index');
 
 	Route::group(['prefix' => 'rest'], function() {
-		Route::get('findUser', 'RestController@findUser');		
+		Route::get('findUser', 'RestController@findUser');
+		Route::get('inviteUserToRoom/{roomId}/{userId}', 'RestController@inviteUserToRoom');
 	});
 
 	Route::group(['prefix' => 'room', 'namespace' => 'Room'], function() {

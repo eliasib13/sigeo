@@ -58,15 +58,18 @@
                         <label>Invite users</label>
                         <div class="ui icon input">
                             <i class="search icon"></i>
-                            <input type="text" placeholder="Search user..." />
+                            <input type="text" placeholder="Search user..." id="search-user"/>
+                        </div>
+                        <div class="ui relaxed divided list" id="inviting-users">
+                            <!-- Users to invite will be rendered here -->
                         </div>
                     </div>
                     <div class="field">
                         <label>Users invited</label>
-                        <div class="ui relaxed divided list">
+                        <div class="ui relaxed divided list" id="invited-users">
                             @foreach($room->invited()->get() as $userInvited)
                                 <div class="item">
-                                    <div class="right floated content">
+                                    <div class="right floated content user-invited" data-id="{{ $userInvited->id }}">
                                         <i class="icon large remove"></i>
                                     </div>
                                     <i class="large user middle aligned icon"></i>
@@ -88,7 +91,9 @@
     <script>
         var form = document.getElementById('edit-room-form'),
             buttonSave = document.getElementById('button-save'),
-            buttonSaveAndGoBack = document.getElementById('button-save-back');
+            buttonSaveAndGoBack = document.getElementById('button-save-back'),
+            searchUser = document.getElementById('search-user');
+
 
         buttonSave.addEventListener('click', function(e) {
             form.submit();
@@ -98,6 +103,79 @@
         buttonSaveAndGoBack.addEventListener('click', function(e) {
             document.getElementById('go-back-input').value = 1;
             form.submit();
-        })
+        });
+
+        var timer;
+        searchUser.addEventListener('keyup', function(e) {
+            if (timer) {
+                clearTimeout(timer);
+            }
+
+            timer = setTimeout(function() {
+                $('#inviting-users').empty();
+                var term = searchUser.value;
+                if (term.length && term.length > 2) {
+                    $.get(`{{ url('rest/findUser') }}?searchTerm=${term}`, 
+                        function(data) {
+                            if (data.length) {
+                                for (var userIndex in data) {
+                                    var user = data[userIndex];
+                                    if (!$(`.user-invited[data-id=${user.id}]`).length) {
+                                        var template = getUserToInviteTemplate(user);
+                                        $('#inviting-users').append(template);
+                                    }
+                                }
+
+                                $('.user-to-invite').on('click', function() {
+                                    var roomId = '{{$room->id}}';
+                                    var userId = $(this).attr('data-id');
+                                    inviteUser(roomId, userId);
+                                })
+                            }
+                            else {
+                                $('#inviting-users').append('No users found.');
+                            }
+                        });
+                }
+            }, 500);
+        });
+
+        function getUserToInviteTemplate(user) {
+            return `<div class="item" >
+                        <div class="right floated content user-to-invite" data-id="${user.id}">
+                            <i class="icon large plus"></i>
+                        </div>
+                        <i class="large user middle aligned icon"></i>
+                        <div class="content">
+                            <span class="header">${user.name}</span>
+                            <div class="description">${user.email}</div>
+                        </div>
+                    </div>
+                    `;
+        };
+
+        function getUserInvitedTemplate(user) {
+            return `<div class="item" >
+                        <div class="right floated content user-invited" data-id="${user.id}">
+                            <i class="icon large remove"></i>
+                        </div>
+                        <i class="large user middle aligned icon"></i>
+                        <div class="content">
+                            <span class="header">${user.name}</span>
+                            <div class="description">${user.email}</div>
+                        </div>
+                    </div>
+                    `;
+        };
+
+        function inviteUser(roomId, userId) {
+            var url = `{{ url('rest/inviteUserToRoom') }}/${roomId}/${userId}`;
+            $.get(url, function(data) {
+                if (data) {
+                    $(`.user-to-invite[data-id=${userId}]`).parent().remove();
+                    $('#invited-users').append(getUserInvitedTemplate(data));
+                }
+            });
+        };
     </script>
 @endsection

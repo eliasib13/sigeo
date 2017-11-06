@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\User;
+use App\Room;
 
 class restController extends Controller
 {
@@ -49,4 +50,13 @@ class restController extends Controller
                    ->get(['id', 'name', 'email']);
     }
 
+    public function inviteUserToRoom($roomId, $userId) {
+        $room = Room::find(intval($roomId));
+        $userId = intval($userId);
+
+        if (sizeof($room->invited()->where('users.id', '=', $userId)->get()) == 0) {
+            $room->invited()->attach($userId);
+            return User::get(['id', 'name', 'email'])->find($userId);
+        }
+    }
 }
