@@ -16,6 +16,22 @@ use App\User;
 
 class restController extends Controller
 {
+    public function login(Request $request) {
+        try {
+            if (Auth::attempt([
+                'email' => $request->input('email'),
+                'password' => $request->input('password')
+            ])) {
+                return "OK";
+            }
+            else {
+                return "Access denied!";
+            }
+        }
+        catch (Exception $e) {
+            return "Error";
+        }
+    }
 
     /**
      * Show the dashboard screen to the user.
